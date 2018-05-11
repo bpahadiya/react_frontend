@@ -63,10 +63,10 @@ class Sign_up extends Component {
      errors: [],
     }
     this.stateChange = this.stateChange.bind(this);
-     this.handleSubmit = this.handleSubmit.bind(this);
-   }
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
 
-   handleSubmit(e) {
+    handleSubmit(e) {
       e.preventDefault();
       
       const { first_name, last_name, role, dob, email, password, password_confirmation } = this.state;
