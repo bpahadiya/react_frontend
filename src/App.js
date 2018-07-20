@@ -13,7 +13,8 @@ class App extends Component {
       {id: '3', name: 'c', age: 3}
     ],
     otherstate: 'some other values',
-    showPersons: false
+    showPersons: false,
+    buttonname: 'show'
   }
 
   // switchName = (test) => {
@@ -55,6 +56,17 @@ class App extends Component {
     this.setState({
       showPersons: !show
     })
+    if (this.state.showPersons){
+      this.setState({
+        buttonname: 'show'
+      })
+    }
+    else{
+      this.setState({
+        buttonname: 'hide'
+      })
+    }
+
   }
 
   addtoggleperson = () => {
@@ -95,6 +107,10 @@ class App extends Component {
                 changed = {(event) => this.changevalue(event, person.id)}
               />
             })}
+            
+            <p><button 
+            style ={style}
+            onClick={this.addtoggleperson}> new Toggel</button></p>
           </div> 
       );
     }
@@ -105,12 +121,8 @@ class App extends Component {
         <p>this is react application</p>
         <button
         style ={style}
-        onClick={this.togglepersons}>toggle persons</button>
+        onClick={this.togglepersons}>{this.state.buttonname}</button>
         {persons}
-
-        <p><button 
-        style ={style}
-        onClick={this.addtoggleperson}> new Toggel</button></p>
       </div>
     );
     // return React.createElement('div', null, 'h1', 'hii this is react app') -> this is also wrong bacos it is not treating 'h1' as heading
