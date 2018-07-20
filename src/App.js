@@ -57,6 +57,13 @@ class App extends Component {
     })
   }
 
+  addtoggleperson = () => {
+    const persons = this.state.persons;
+    const person = {id: persons.length + 1, name: '', age: ''}
+    persons.push(person);
+    this.setState({persons: persons});
+  }
+
   deleteperson = (personIndex) => {
     const persons = this.state.persons; //it is good practice to create a copy of your array which you want to manipulate.
     // const persons = [...this.state.persons]; // you can also do this. 
@@ -100,6 +107,10 @@ class App extends Component {
         style ={style}
         onClick={this.togglepersons}>toggle persons</button>
         {persons}
+
+        <p><button 
+        style ={style}
+        onClick={this.addtoggleperson}> new Toggel</button></p>
       </div>
     );
     // return React.createElement('div', null, 'h1', 'hii this is react app') -> this is also wrong bacos it is not treating 'h1' as heading
