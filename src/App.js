@@ -28,30 +28,25 @@ class App extends Component {
   //   }) // setState is a method defined in component library. it is responsible for update the DOM.
   // }
 
-  namechange = (event, id) => {
+
+  changevalue = (event, id) => {
     const personIndex = this.state.persons.findIndex(p => {
       return p.id === id;
     });
-    // const person = this state.persons[perosnIndex]; - we dont directly mutate the object.we will use spread operator for that.
-    // const person = Object.assign({}, this.state.persons[personIndex]) - we cal also use this as a alternative.
 
     const person = {
       ...this.state.persons[personIndex]
     };
-
-    person.name = event.target.value;
+    if(event.target.name == "age")
+    {
+      person.age = event.target.value;
+    }
+    else
+    {
+      person.name = event.target.value;
+    }
     const persons = [...this.state.persons];
     persons[personIndex] = person;
-
-  //   this.setState({
-  //     persons: [
-  //       {id: '4', name: 'd', age: 4},
-  //       {id: '5', name: event.target.value, age: 5}, // now e should change its name.
-  //       {id: '6', name: 'f', age: 6}
-  //     ] 
-  //   })
-  // }
-
     this.setState({persons: persons});
   }
 
@@ -63,7 +58,7 @@ class App extends Component {
   }
 
   deleteperson = (personIndex) => {
-    const persons = this.state.persons; //it is good ractice to create a copy of your array which you want to manipulate.
+    const persons = this.state.persons; //it is good practice to create a copy of your array which you want to manipulate.
     // const persons = [...this.state.persons]; // you can also do this. 
     persons.splice(personIndex, 1);
     this.setState({persons: persons});
@@ -90,7 +85,7 @@ class App extends Component {
                 // click = {this.deleteperson.bind(index)} /> this will also work
                 click = {() => this.deleteperson(index)}
                 key = {person.id}
-                changed = {(event) => this.namechange(event, person.id)}
+                changed = {(event) => this.changevalue(event, person.id)}
               />
             })}
           </div> 
